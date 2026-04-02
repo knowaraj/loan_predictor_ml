@@ -1,0 +1,89 @@
+:root {
+    --admin-ink: #0f172a;
+    --admin-muted: #64748b;
+    --admin-brand: #1d4ed8;
+    --admin-brand-deep: #1e3a8a;
+    --admin-bg: #f2f6ff;
+    --admin-surface: #ffffff;
+    --admin-border: #dbe4f0;
+    --admin-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+}
+
+body {
+    color: var(--admin-ink);
+    background: radial-gradient(circle at 100% 0, #eaf1ff 0, transparent 35%), var(--admin-bg);
+}
+
+.admin-shell {
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 265px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #0f172a 0%, var(--admin-brand-deep) 100%);
+    color: #fff;
+    transition: all 0.25s;
+}
+
+.sidebar .nav-link {
+    color: #dbeafe;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 10px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link:focus {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.14);
+    text-decoration: none;
+}
+
+.admin-topbar {
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-content {
+    background: transparent;
+}
+
+.card {
+    border: 1px solid var(--admin-border);
+    border-radius: 16px !important;
+    box-shadow: var(--admin-shadow);
+}
+
+.table {
+    border-color: var(--admin-border);
+}
+
+.table thead {
+    background-color: #0f172a;
+    color: #fff;
+}
+
+.table tbody tr:hover {
+    background-color: #eef4ff;
+}
+
+.btn-primary {
+    background-color: var(--admin-brand);
+    border-color: var(--admin-brand);
+}
+
+.btn-primary:hover {
+    background-color: #1e40af;
+    border-color: #1e40af;
+}
+
+.text-muted {
+    color: var(--admin-muted) !important;
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        width: 220px;
+    }
+}

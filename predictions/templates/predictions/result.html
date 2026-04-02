@@ -1,0 +1,85 @@
+{% extends 'predictions/base.html' %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-lg rounded-4 p-4">
+            <h2 class="text-center text-primary mb-4">Prediction Result</h2>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Applicant</th>
+                    <td>{{ application.user.get_full_name|default:application.user.username }}</td>
+                </tr>
+                <tr>
+                    <th>Probability of Default</th>
+                    <td>{{ prediction.probability|floatformat:2 }}</td>
+                </tr>
+                <tr>
+                    <th>Predicted Status</th>
+                    <td>
+                        {% if prediction.predicted_default %}
+                            <span class="badge bg-danger fs-6">Defaulter</span>
+                        {% else %}
+                            <span class="badge bg-success fs-6">Non-defaulter</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+
+            <!-- ========================= -->
+            <!-- SHAP Explanation Section -->
+            <!-- ========================= -->
+
+            {% if prediction.reasons %}
+            <h4 class="mt-4 text-secondary text-center">Top 5 Reasons for This Prediction</h4>
+
+            <table class="table table-striped mt-3">
+                <thead class="table-light">
+                    <tr>
+                        <th>Feature</th>
+                        <th>Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reason in prediction.reasons %}
+                    <tr>
+                        <td>{{ reason.feature }}</td>
+                        <td>
+                            {% if reason.impact > 0 %}
+                                <span class="badge bg-success">
+                                    +{{ reason.impact|floatformat:3 }}
+                                </span>
+                            {% else %}
+                                <span class="badge bg-danger">
+                                    {{ reason.impact|floatformat:3 }}
+                                </span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+
+            <!-- ========================= -->
+
+            <div class="text-center mt-4">
+               {% if not prediction.predicted_default %}
+                    {% if prediction.loanapplicationformdata_set.exists %}
+                        <span class="text-muted">Already Applied</span>
+                    {% else %}
+                        <a href="{% url 'apply_loan' %}?prediction={{ prediction.id }}" class="btn btn-success mt-2">
+                            Apply for Loan
+                        </a>
+                    {% endif %}
+               {% endif %}
+                <a href="{% url 'predict' %}" class="btn btn-outline-primary btn-lg px-4 ms-2">
+                    Try Another Prediction
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

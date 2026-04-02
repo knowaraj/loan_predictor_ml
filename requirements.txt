@@ -1,0 +1,6 @@
+django
+pandas
+scikit-learn
+joblib
+numpy
+django-widget-tweaks
