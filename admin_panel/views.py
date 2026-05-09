@@ -19,6 +19,12 @@ def admin_required(view_func):
 def admin_required(user):
     return user.is_authenticated and user.is_staff
 
+def admin_panel_root(request):
+    """Redirect to dashboard if authenticated, otherwise to login"""
+    if request.user.is_authenticated and request.user.is_staff:
+        return redirect('admin_dashboard')
+    return redirect('admin_login')
+
 def admin_login_view(request):
     if request.method == "POST":
         username = request.POST.get('username')

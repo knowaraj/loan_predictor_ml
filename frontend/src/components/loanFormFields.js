@@ -1,0 +1,75 @@
+export const LOAN_FORM_FIELDS = [
+  {
+    name: 'gender',
+    label: 'Gender',
+    type: 'select',
+    options: ['Male', 'Female'],
+  },
+  {
+    name: 'married',
+    label: 'Married',
+    type: 'select',
+    options: ['Yes', 'No'],
+  },
+  {
+    name: 'dependents',
+    label: 'Dependents',
+    type: 'select',
+    options: ['0', '1', '2', '3+'],
+  },
+  {
+    name: 'education',
+    label: 'Education',
+    type: 'select',
+    options: ['Graduate', 'Not Graduate'],
+  },
+  {
+    name: 'self_employed',
+    label: 'Self Employed',
+    type: 'select',
+    options: ['Yes', 'No'],
+  },
+  {
+    name: 'applicant_income',
+    label: 'Applicant Income',
+    type: 'number',
+    placeholder: 'e.g. 5000',
+    min: 0,
+  },
+  {
+    name: 'coapplicant_income',
+    label: 'Coapplicant Income',
+    type: 'number',
+    placeholder: 'e.g. 2000',
+    min: 0,
+  },
+  {
+    name: 'loan_amount',
+    label: 'Loan Amount',
+    type: 'number',
+    placeholder: 'e.g. 120',
+    min: 0,
+  },
+  {
+    name: 'loan_amount_term',
+    label: 'Loan Amount Term',
+    type: 'number',
+    placeholder: 'e.g. 360',
+    min: 0,
+  },
+  {
+    name: 'credit_history',
+    label: 'Credit History',
+    type: 'select',
+    options: [
+      { value: '1', text: 'Good (1)' },
+      { value: '0', text: 'Bad (0)' },
+    ],
+  },
+  {
+    name: 'property_area',
+    label: 'Property Area',
+    type: 'select',
+    options: ['Urban', 'Semiurban', 'Rural'],
+  },
+]

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Predictor ML - System Diagrams</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(30, 58, 138, 0.1);
+            border: 2px solid #1E3A8A;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #60A5FA;
+            text-shadow: 0 2px 10px rgba(30, 58, 138, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            color: #94A3B8;
+        }
+        
+        .diagram-section {
+            margin-bottom: 50px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid #334155;
+            border-radius: 10px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .diagram-section:hover {
+            background: rgba(15, 23, 42, 0.9);
+            border-color: #3B82F6;
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+        }
+        
+        .diagram-title {
+            font-size: 1.8em;
+            color: #60A5FA;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1E3A8A;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .diagram-number {
+            background: #1E3A8A;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50%;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .diagram-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+        }
+        
+        .diagram-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .diagram-description {
+            color: #cbd5e1;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3px solid #3B82F6;
+            border-radius: 4px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3B82F6 0%, #1E3A8A 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+        
+        button:hover {
+            background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #94A3B8;
+            margin-top: 50px;
+            border-top: 1px solid #334155;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .diagram-section {
+                page-break-inside: avoid;
+                background: white;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏦 Loan Predictor ML System</h1>
+            <p class="subtitle">Comprehensive System Architecture & Workflow Diagrams</p>
+        </div>
+        
+        <!-- Diagram 1: ML Pipeline -->
+        <div class="diagram-section">
+            <div class="diagram-title">
+                <span><span class="diagram-number">1</span> ML Pipeline Diagram</span>
+            </div>
+            <div class="diagram-description">
+                Complete machine learning workflow from raw data preprocessing through model training, evaluation, serialization, and final prediction with database storage.
+            </div>
+            <div class="diagram-container">
+                <div class="mermaid">
+%%{init: {'flowchart': {'htmlLabels': true}, 'theme': 'base', 'themeVariables': { 'primaryColor': '#1E3A8A', 'primaryTextColor': '#fff', 'primaryBorderColor': '#1e40af', 'lineColor': '#0f172a', 'secondaryColor': '#3B82F6', 'tertiaryColor': '#93C5FD', 'fontFamily': 'arial'}}}%%
+graph LR
+    A["<b>Raw Loan Data</b><br/>CSV Files"] --> B["<b>Data Preprocessing</b><br/>• Missing Values<br/>• Categorical Encoding<br/>• Normalization"]
+    B --> C["<b>Feature Engineering</b><br/>• Income Ratios<br/>• Loan-to-Income<br/>• Credit History Impact"]
+    C --> D["<b>Feature Scaling</b><br/>StandardScaler<br/>MinMaxScaler"]
+    D --> E["<b>Train/Test Split</b><br/>80% / 20%"]
+    E --> F["<b>Model Training</b><br/>XGBoost Classifier"]
+    F --> G["<b>Model Evaluation</b><br/>• Accuracy<br/>• Precision/Recall<br/>• ROC-AUC Score"]
+    G --> H["<b>Model Serialization</b><br/>Joblib Format"]
+    H --> I["<b>Saved Models</b><br/>pipeline_xgb.joblib<br/>shap_explainer.joblib"]
+    I --> J["<b>Prediction Engine</b><br/>predictor.py"]
+    J --> K["<b>Predictions</b><br/>Default Probability<br/>Threshold: 0.65"]
+    L["<b>Feature Names</b><br/>feature_names.joblib"] -.-> J
+    M["<b>User Input Data</b><br/>Loan Application Form"] --> J
+    K --> N["<b>Database</b><br/>PredictionResult Table"]
+    
+    style A fill:#1E3A8A,stroke:#1e40af,color:#fff,stroke-width:3px
+    style B fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:3px
+    style C fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:3px
+    style D fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:3px
+    style E fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:3px
+    style F fill:#06B6D4,stroke:#0e7490,color:#fff,stroke-width:3px
+    style G fill:#06B6D4,stroke:#0e7490,color:#fff,stroke-width:3px
+    style H fill:#06B6D4,stroke:#0e7490,color:#fff,stroke-width:3px
+    style I fill:#059669,stroke:#065f46,color:#fff,stroke-width:3px
+    style J fill:#7C3AED,stroke:#5B21B6,color:#fff,stroke-width:3px
+    style K fill:#DC2626,stroke:#7F1D1D,color:#fff,stroke-width:3px
+    style L fill:#64748B,stroke:#334155,color:#fff,stroke-width:2px
+    style M fill:#64748B,stroke:#334155,color:#fff,stroke-width:2px
+    style N fill:#1F2937,stroke:#111827,color:#fff,stroke-width:3px
+                </div>
+            </div>
+            <div class="button-group">
+                <button onclick="downloadDiagram('diagram1', 'ML_Pipeline_Diagram')">📥 Download as PNG</button>
+                <button onclick="printDiagram('diagram1')">🖨️ Print</button>
+            </div>
+        </div>
+        
+        <!-- Diagram 2: DFD Level 0 -->
+        <div class="diagram-section">
+            <div class="diagram-title">
+                <span><span class="diagram-number">2</span> Data Flow Diagram - Level 0</span>
+            </div>
+            <div class="diagram-description">
+                High-level system architecture showing external entities (users and administrators), core system components, and their interactions with the database and ML model.
+            </div>
+            <div class="diagram-container">
+                <div class="mermaid" id="diagram2">
+%%{init: {'flowchart': {'htmlLabels': true}, 'theme': 'base', 'themeVariables': { 'primaryColor': '#1F2937', 'primaryTextColor': '#fff', 'primaryBorderColor': '#111827', 'lineColor': '#0f172a', 'secondaryColor': '#3B82F6', 'tertiaryColor': '#06B6D4', 'fontFamily': 'arial'}}}%%
+graph TB
+    subgraph External["External Entities"]
+        USER["👤 End User"]
+        ADMIN["👨‍💼 Administrator"]
+    end
+    
+    subgraph System["Loan Predictor System - Core Components"]
+        AUTH["<b>Authentication</b><br/>Login / Register"]
+        FORM["<b>Loan Application</b><br/>Form Handler"]
+        PRED["<b>Prediction</b><br/>Engine"]
+        ADMIN_DASH["<b>Admin Dashboard</b><br/>Management Console"]
+        DB["<b>Database</b><br/>SQLite3"]
+        ML["<b>ML Model</b><br/>XGBoost Classifier"]
+    end
+    
+    USER -->|Login/Register| AUTH
+    USER -->|Submit Form| FORM
+    FORM -->|Validate & Save| DB
+    FORM -->|Input Data| PRED
+    PRED -->|Load Model| ML
+    ML -->|Prediction Result| PRED
+    PRED -->|Save Result| DB
+    PRED -->|Display| USER
+    
+    ADMIN -->|Authentication| AUTH
+    ADMIN -->|Manage| ADMIN_DASH
+    ADMIN_DASH -->|Query| DB
+    ADMIN_DASH -->|Update| DB
+    
+    style USER fill:#1E3A8A,stroke:#1e40af,color:#fff,stroke-width:3px
+    style ADMIN fill:#059669,stroke:#065f46,color:#fff,stroke-width:3px
+    style AUTH fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    style FORM fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    style PRED fill:#06B6D4,stroke:#0e7490,color:#fff,stroke-width:2px
+    style ADMIN_DASH fill:#8B5CF6,stroke:#6D28D9,color:#fff,stroke-width:2px
+    style DB fill:#1F2937,stroke:#111827,color:#fff,stroke-width:3px
+    style ML fill:#DC2626,stroke:#7F1D1D,color:#fff,stroke-width:2px
+                </div>
+            </div>
+            <div class="button-group">
+                <button onclick="downloadDiagram('diagram2', 'DFD_Level_0')">📥 Download as PNG</button>
+                <button onclick="printDiagram('diagram2')">🖨️ Print</button>
+            </div>
+        </div>
+        
+        <!-- Diagram 3: DFD Level 1 -->
+        <div class="diagram-section">
+            <div class="diagram-title">
+                <span><span class="diagram-number">3</span> Data Flow Diagram - Level 1</span>
+            </div>
+            <div class="diagram-description">
+                Detailed breakdown of the prediction process showing input validation, data processing, ML model execution, decision logic, and result storage.
+            </div>
+            <div class="diagram-container">
+                <div class="mermaid" id="diagram3">
+%%{init: {'flowchart': {'htmlLabels': true}, 'theme': 'base', 'themeVariables': { 'primaryColor': '#1E3A8A', 'primaryTextColor': '#fff', 'primaryBorderColor': '#1e40af', 'lineColor': '#0f172a', 'secondaryColor': '#3B82F6', 'fontFamily': 'arial'}}}%%
+graph LR
+    subgraph Step1["1️⃣ User Input"]
+        A["<b>Loan Application<br/>Form Data</b>"]
+    end
+    
+    subgraph Step2["2️⃣ Data Processing"]
+        B["<b>Validate<br/>Input Data</b>"]
+        C["<b>Transform to<br/>DataFrame</b>"]
+        D["<b>Encode Categorical<br/>Variables</b>"]
+    end
+    
+    subgraph Step3["3️⃣ ML Prediction"]
+        E["<b>Load XGBoost<br/>Pipeline</b>"]
+        F["<b>Calculate<br/>Probability</b>"]
+        G["<b>Fetch Threshold<br/>Configuration</b>"]
+    end
+    
+    subgraph Step4["4️⃣ Decision Logic"]
+        H["<b>Compare<br/>Probability</b>"]
+        I{{"<b>Prob > 0.65?</b>"}}
+    end
+    
+    subgraph Step5["5️⃣ Result Storage"]
+        J["<b>Create<br/>PredictionResult</b>"]
+        K["<b>Save to<br/>Database</b>"]
+    end
+    
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    G --> H
+    F --> H
+    H --> I
+    I -->|YES<br/>APPROVE| J
+    I -->|NO<br/>REJECT| J
+    J --> K
+    
+    style A fill:#1E3A8A,stroke:#1e40af,color:#fff,stroke-width:3px
+    style B fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    style C fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    style D fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    style E fill:#06B6D4,stroke:#0e7490,color:#fff,stroke-width:2px
+    style F fill:#06B6D4,stroke:#0e7490,color:#fff,stroke-width:2px
+    style G fill:#64748B,stroke:#334155,color:#fff,stroke-width:2px
+    style H fill:#7C3AED,stroke:#5B21B6,color:#fff,stroke-width:2px
+    style I fill:#DC2626,stroke:#7F1D1D,color:#fff,stroke-width:3px
+    style J fill:#059669,stroke:#065f46,color:#fff,stroke-width:2px
+    style K fill:#1F2937,stroke:#111827,color:#fff,stroke-width:3px
+    style Step1 fill:#E0E7FF,stroke:#312E81,stroke-width:2px
+    style Step2 fill:#E0F2FE,stroke:#0C2D48,stroke-width:2px
+    style Step3 fill:#DCFCE7,stroke:#14532D,stroke-width:2px
+    style Step4 fill:#FEF3C7,stroke:#78350F,stroke-width:2px
+    style Step5 fill:#FCE7F3,stroke:#500724,stroke-width:2px
+                </div>
+            </div>
+            <div class="button-group">
+                <button onclick="downloadDiagram('diagram3', 'DFD_Level_1')">📥 Download as PNG</button>
+                <button onclick="printDiagram('diagram3')">🖨️ Print</button>
+            </div>
+        </div>
+        
+        <!-- Diagram 4: Use-Case -->
+        <div class="diagram-section">
+            <div class="diagram-title">
+                <span><span class="diagram-number">4</span> Use-Case Diagram</span>
+            </div>
+            <div class="diagram-description">
+                System functionality from end user and administrator perspectives, showing all available use cases and their relationships.
+            </div>
+            <div class="diagram-container">
+                <div class="mermaid" id="diagram4">
+%%{init: {'flowchart': {'htmlLabels': true}, 'theme': 'base', 'themeVariables': { 'primaryColor': '#1F2937', 'primaryTextColor': '#fff', 'primaryBorderColor': '#111827', 'lineColor': '#374151', 'secondaryColor': '#3B82F6', 'fontFamily': 'arial'}}}%%
+graph TB
+    subgraph Actors["System Actors"]
+        USER["👤<br/><b>End User</b>"]
+        ADMIN["👨‍💼<br/><b>Administrator</b>"]
+    end
+    
+    subgraph System["Loan Predictor System - Use Cases"]
+        UC1["<b>Register</b><br/>Account"]
+        UC2["<b>Login</b>"]
+        UC3["<b>Apply for</b><br/>Loan"]
+        UC4["<b>Get</b><br/>Prediction"]
+        UC5["<b>View</b><br/>History"]
+        UC6["<b>Manage</b><br/>Profile"]
+        UC7["<b>Change</b><br/>Password"]
+        UC8["<b>Reset</b><br/>Password"]
+        
+        UC9["<b>Manage</b><br/>Users"]
+        UC10["<b>Review</b><br/>Applications"]
+        UC11["<b>Approve/<br/>Reject</b>"]
+        UC12["<b>View</b><br/>Reports"]
+        UC13["<b>Configure</b><br/>Threshold"]
+        UC14["<b>View</b><br/>Analytics"]
+    end
+    
+    USER -->|uses| UC1
+    USER -->|uses| UC2
+    USER -->|uses| UC3
+    USER -->|uses| UC5
+    USER -->|uses| UC6
+    USER -->|uses| UC7
+    USER -->|uses| UC8
+    
+    UC3 -->|triggers| UC4
+    UC6 -->|related| UC7
+    UC8 -->|related| UC2
+    
+    ADMIN -->|uses| UC2
+    ADMIN -->|uses| UC9
+    ADMIN -->|uses| UC10
+    ADMIN -->|uses| UC12
+    ADMIN -->|uses| UC13
+    ADMIN -->|uses| UC14
+    
+    UC10 -->|contains| UC11
+    UC9 -->|related| UC12
+    
+    style USER fill:#1E3A8A,stroke:#1e40af,color:#fff,stroke-width:3px
+    style ADMIN fill:#059669,stroke:#065f46,color:#fff,stroke-width:3px
+    
+    style UC1 fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    style UC2 fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    style UC3 fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    style UC5 fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    style UC6 fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    style UC7 fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    style UC8 fill:#3B82F6,stroke:#1e40af,color:#fff,stroke-width:2px
+    
+    style UC9 fill:#8B5CF6,stroke:#6D28D9,color:#fff,stroke-width:2px
+    style UC10 fill:#8B5CF6,stroke:#6D28D9,color:#fff,stroke-width:2px
+    style UC12 fill:#8B5CF6,stroke:#6D28D9,color:#fff,stroke-width:2px
+    style UC13 fill:#8B5CF6,stroke:#6D28D9,color:#fff,stroke-width:2px
+    style UC14 fill:#8B5CF6,stroke:#6D28D9,color:#fff,stroke-width:2px
+    
+    style UC4 fill:#DC2626,stroke:#7F1D1D,color:#fff,stroke-width:3px
+    style UC11 fill:#DC2626,stroke:#7F1D1D,color:#fff,stroke-width:3px
+                </div>
+            </div>
+            <div class="button-group">
+                <button onclick="downloadDiagram('diagram4', 'Use_Case_Diagram')">📥 Download as PNG</button>
+                <button onclick="printDiagram('diagram4')">🖨️ Print</button>
+            </div>
+        </div>
+        
+        <!-- Diagram 5: Sequence 1 -->
+        <div class="diagram-section">
+            <div class="diagram-title">
+                <span><span class="diagram-number">5</span> Sequence Diagram - User Loan Application</span>
+            </div>
+            <div class="diagram-description">
+                Step-by-step sequence of interactions between user, browser, Django backend, database, and ML engine during loan application and prediction process.
+            </div>
+            <div class="diagram-container">
+                <div class="mermaid" id="diagram5">
+%%{init: {'sequence': {'htmlLabels': true, 'mirrorActors': true}, 'theme': 'base', 'themeVariables': { 'primaryColor': '#1E3A8A', 'primaryTextColor': '#fff', 'primaryBorderColor': '#1e40af', 'lineColor': '#374151', 'secondaryColor': '#3B82F6', 'fontFamily': 'arial'}, 'fontSize': 14}}%%
+sequenceDiagram
+    participant User as 👤 End User
+    participant Browser as 🌐 Web Browser
+    participant Django as 🐍 Django Backend
+    participant DB as 📊 SQLite Database
+    participant ML as 🤖 ML Engine
+    
+    rect rgb(30, 58, 138)
+    note over User,ML: Step 1: User Request
+    User->>Browser: Click 'Apply for Loan'
+    Browser->>Django: GET /predict/
+    Django->>Browser: Return Loan Form HTML
+    end
+    
+    rect rgb(59, 130, 246)
+    note over User,ML: Step 2: Form Submission
+    User->>Browser: Fill & Submit Form
+    Browser->>Django: POST /predict/ (Form Data)
+    end
+    
+    rect rgb(6, 182, 212)
+    note over User,ML: Step 3: Save Application
+    Django->>DB: Save LoanApplication Record
+    DB-->>Django: Return Application ID
+    end
+    
+    rect rgb(6, 182, 212)
+    note over User,ML: Step 4: Load Model & Predict
+    Django->>ML: Load XGBoost Pipeline
+    ML-->>Django: Model Loaded
+    Django->>Django: Prepare DataFrame from Input
+    Django->>ML: predict_proba(input_data)
+    ML-->>Django: Return Probability (0-1)
+    end
+    
+    rect rgb(124, 58, 237)
+    note over User,ML: Step 5: Threshold Comparison
+    Django->>DB: Fetch PredictionConfig
+    DB-->>Django: Threshold Value (0.65)
+    Django->>Django: Compare Prob > Threshold
+    end
+    
+    rect rgb(5, 150, 105)
+    note over User,ML: Step 6: Save Result
+    alt Probability > 0.65
+        Django->>DB: Save PredictionResult (APPROVED)
+    else Probability ≤ 0.65
+        Django->>DB: Save PredictionResult (REJECTED)
+    end
+    DB-->>Django: Result Saved Successfully
+    end
+    
+    rect rgb(31, 41, 55)
+    note over User,ML: Step 7: Display Result
+    Django->>Browser: Return Prediction Result Page
+    Browser-->>User: Display Loan Decision
+    end
+                </div>
+            </div>
+            <div class="button-group">
+                <button onclick="downloadDiagram('diagram5', 'Sequence_User_Application')">📥 Download as PNG</button>
+                <button onclick="printDiagram('diagram5')">🖨️ Print</button>
+            </div>
+        </div>
+        
+        <!-- Diagram 6: Sequence 2 -->
+        <div class="diagram-section">
+            <div class="diagram-title">
+                <span><span class="diagram-number">6</span> Sequence Diagram - Admin Review & Approval</span>
+            </div>
+            <div class="diagram-description">
+                Step-by-step sequence showing admin authentication, viewing applications list, reviewing details, and updating application status with remarks.
+            </div>
+            <div class="diagram-container">
+                <div class="mermaid" id="diagram6">
+%%{init: {'sequence': {'htmlLabels': true, 'mirrorActors': true}, 'theme': 'base', 'themeVariables': { 'primaryColor': '#059669', 'primaryTextColor': '#fff', 'primaryBorderColor': '#065f46', 'lineColor': '#374151', 'secondaryColor': '#8B5CF6', 'fontFamily': 'arial'}, 'fontSize': 14}}%%
+sequenceDiagram
+    participant Admin as 👨‍💼 Administrator
+    participant Browser as 🌐 Web Browser
+    participant Django as 🐍 Django Backend
+    participant DB as 📊 SQLite Database
+    
+    rect rgb(30, 58, 138)
+    note over Admin,DB: Step 1: Admin Authentication
+    Admin->>Browser: Enter Credentials
+    Browser->>Django: POST /admin-panel/login/
+    Django->>DB: Authenticate Admin User
+    DB-->>Django: Authentication Success
+    Django->>Browser: Redirect to Dashboard
+    Browser-->>Admin: Display Admin Dashboard
+    end
+    
+    rect rgb(59, 130, 246)
+    note over Admin,DB: Step 2: View Applications List
+    Admin->>Browser: Click 'Loan Applications'
+    Browser->>Django: GET /admin-panel/predictions/
+    Django->>DB: Query LoanApplicationFormData
+    DB-->>Django: Return Applications List
+    Django->>Browser: Render Applications Table
+    Browser-->>Admin: Display All Applications
+    end
+    
+    rect rgb(6, 182, 212)
+    note over Admin,DB: Step 3: View Application Details
+    Admin->>Browser: Click on Specific Application
+    Browser->>Django: GET /admin-panel/prediction/&lt;id&gt;/
+    Django->>DB: Query Application & Prediction Details
+    DB-->>Django: Return Full Application Data
+    Django->>Browser: Render Detail Page
+    Browser-->>Admin: Display Complete Application Info
+    end
+    
+    rect rgb(124, 58, 237)
+    note over Admin,DB: Step 4: Review & Update Status
+    Admin->>Browser: Review Application Details
+    Admin->>Browser: Enter Admin Remark/Comment
+    Admin->>Browser: Select Approve or Reject
+    Browser->>Django: POST /admin-panel/prediction/&lt;id&gt;/update/
+    end
+    
+    rect rgb(5, 150, 105)
+    note over Admin,DB: Step 5: Save Decision
+    Django->>DB: Update Status & Remark Fields
+    DB-->>Django: Update Confirmed
+    Django->>Django: Generate Notification (Optional)
+    Django->>Browser: Return Success Message
+    Browser-->>Admin: Display Confirmation
+    end
+    
+    rect rgb(31, 41, 55)
+    note over Admin,DB: Step 6: Refresh List
+    Admin->>Browser: View Updated List
+    Browser->>Django: GET /admin-panel/predictions/
+    Django->>DB: Query Updated Applications
+    DB-->>Django: Return Updated List
+    Django->>Browser: Render Updated Table
+    Browser-->>Admin: Display Latest Applications with Updated Status
+    end
+                </div>
+            </div>
+            <div class="button-group">
+                <button onclick="downloadDiagram('diagram6', 'Sequence_Admin_Approval')">📥 Download as PNG</button>
+                <button onclick="printDiagram('diagram6')">🖨️ Print</button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>📊 Loan Predictor ML - System Architecture & Workflow Documentation</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Generated with Mermaid Diagrams | Professional Design</p>
+        </div>
+    </div>
+    
+    <script>
+        mermaid.contentLoaderFactory.mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'base',
+            securityLevel: 'loose',
+            deterministicIds: true
+        });
+        mermaid.contentLoaderFactory.mermaid.renderAll();
+        
+        async function downloadDiagram(diagramId, fileName) {
+            try {
+                const element = document.querySelector(`#${diagramId} svg`) || document.querySelector(`.mermaid:has(+ .mermaid)`)?.previousElementSibling?.querySelector('svg');
+                if (!element) {
+                    alert('Unable to locate diagram. Please try right-clicking on the diagram instead.');
+                    return;
+                }
+                
+                // Create SVG copy
+                const svgString = new XMLSerializer().serializeToString(element);
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const img = new Image();
+                
+                img.onload = function() {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    
+                    const link = document.createElement('a');
+                    link.href = canvas.toDataURL('image/png');
+                    link.download = fileName + '.png';
+                    link.click();
+                };
+                
+                const svgBlob = new Blob([svgString], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(svgBlob);
+                img.src = url;
+                
+            } catch (e) {
+                console.error('Download failed:', e);
+                alert('Download failed. Try right-clicking on the diagram to save as image.');
+            }
+        }
+        
+        function printDiagram(diagramId) {
+            const printWindow = window.open('', '', 'width=1200,height=800');
+            const element = document.querySelector(`#${diagramId}`);
+            printWindow.document.write('<html><head><title>Print Diagram</title><style>body { margin: 0; padding: 20px; } svg { max-width: 100%; height: auto; }</style></head><body>');
+            printWindow.document.write(element.outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            setTimeout(() => printWindow.print(), 500);
+        }
+    </script>
+</body>
+</html>

@@ -5,7 +5,7 @@
     <title>Loan Prediction System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
@@ -14,58 +14,381 @@
             --muted: #64748b;
             --brand: #0f766e;
             --brand-dark: #115e59;
-            --accent: #f59e0b;
+            --accent: #d97706;
             --surface: #ffffff;
-            --bg-soft: #e8f4f2;
-            --border: #d9e5e3;
-            --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            --bg-soft: #f6f9f8;
+            --border: rgba(15, 23, 42, 0.10);
+            --shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+            --shadow-soft: 0 10px 24px rgba(15, 23, 42, 0.05);
         }
 
         * {
             font-family: 'Manrope', sans-serif;
         }
 
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
         body {
             color: var(--ink);
+            font-size: 16px;
+            line-height: 1.65;
+            font-weight: 400;
             background:
-                radial-gradient(circle at 10% 0%, #dff3f0 0, transparent 38%),
-                radial-gradient(circle at 90% 12%, #fff1d6 0, transparent 32%),
-                linear-gradient(180deg, #f8fbfb 0%, #eef5f5 100%);
+                radial-gradient(circle at 10% 0%, rgba(15, 118, 110, 0.12) 0, transparent 30%),
+                radial-gradient(circle at 92% 8%, rgba(217, 119, 6, 0.10) 0, transparent 26%),
+                linear-gradient(180deg, #f8fbfa 0%, #edf3f2 100%);
         }
 
         .navbar {
-            background: linear-gradient(120deg, var(--brand) 0%, var(--brand-dark) 100%);
-            box-shadow: 0 8px 24px rgba(15, 118, 110, 0.25);
+            background: linear-gradient(120deg, #0b6b63 0%, var(--brand-dark) 100%);
+            box-shadow: 0 10px 28px rgba(15, 118, 110, 0.18);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .navbar-brand {
-            font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: 0.2px;
+            font-weight: 700;
+            font-size: 1.08rem;
+            letter-spacing: 0.01em;
         }
 
         .nav-link {
             font-weight: 600;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, opacity 0.2s ease;
+            opacity: 0.95;
         }
 
         .nav-link:hover,
         .nav-link:focus {
             color: #fde68a !important;
+            opacity: 1;
         }
 
         .dropdown-menu {
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 14px;
+            box-shadow: var(--shadow-soft);
         }
 
         main.container {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 2rem;
-            border-radius: 18px;
-            box-shadow: var(--shadow);
+            background: transparent;
+            border: 0;
+            padding: 0;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 1180px;
+            box-shadow: none;
             animation: fadeUp 0.45s ease;
+        }
+
+        .page-shell {
+            display: grid;
+            gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.64);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.58);
+            border-radius: 28px;
+            padding: clamp(1rem, 2vw, 1.5rem);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-panel {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.9fr);
+            gap: 1.5rem;
+            align-items: stretch;
+            overflow: hidden;
+            padding: 1.35rem;
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at top right, rgba(245, 158, 11, 0.14), transparent 28%),
+                linear-gradient(135deg, #0f172a 0%, #134e4a 60%, #0b6b63 100%);
+            color: #f8fafc;
+            box-shadow: 0 22px 46px rgba(15, 23, 42, 0.18);
+        }
+
+        .hero-panel::after {
+            content: "";
+            position: absolute;
+            inset: auto -6% -22% auto;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #d9f99d;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            margin: 0.95rem 0 0.75rem;
+            max-width: 12ch;
+            font-size: clamp(2.3rem, 4.4vw, 4rem);
+            line-height: 1.02;
+            letter-spacing: -0.04em;
+            font-weight: 700;
+        }
+
+        .hero-copy {
+            max-width: 64ch;
+            margin: 0;
+            color: rgba(226, 232, 240, 0.88);
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .action-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.2rem;
+        }
+
+        .action-row .btn,
+        .cta-actions .btn {
+            min-width: 150px;
+            border-radius: 999px;
+            padding: 0.8rem 1.1rem;
+            font-weight: 700;
+        }
+
+        .action-row .btn-primary,
+        .cta-actions .btn-dark {
+            background: #f8fafc;
+            color: #0f172a;
+            border-color: #f8fafc;
+        }
+
+        .action-row .btn-outline-secondary,
+        .cta-actions .btn-outline-secondary {
+            color: #f8fafc;
+            border-color: rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .action-row .btn-outline-secondary:hover,
+        .cta-actions .btn-outline-secondary:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+        }
+
+        .hero-metrics {
+            display: grid;
+            gap: 0.85rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 1rem 1.05rem;
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+        }
+
+        .metric-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #0f766e;
+            margin-bottom: 0.45rem;
+        }
+
+        .metric-card h3 {
+            margin: 0 0 0.25rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .metric-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .section-panel {
+            padding-top: 1.15rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .section-copy {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .info-layout {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.25rem;
+        }
+
+        .info-item {
+            padding-top: 0.35rem;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.35rem;
+        }
+
+        .info-item p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.94rem;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+            gap: 1.25rem;
+            align-items: start;
+        }
+
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 0.95rem;
+        }
+
+        .timeline li {
+            position: relative;
+            padding-left: 1.15rem;
+        }
+
+        .timeline li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.52rem;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 50%;
+            background: var(--brand);
+            box-shadow: 0 0 0 5px rgba(15, 118, 110, 0.12);
+        }
+
+        .timeline strong {
+            display: block;
+            font-size: 0.98rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline span {
+            color: var(--muted);
+            line-height: 1.55;
+            font-size: 0.94rem;
+        }
+
+        .side-note {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.96));
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 22px;
+            padding: 1.25rem;
+            display: grid;
+            gap: 0.85rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .mini-kicker {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #0f766e;
+            font-weight: 800;
+            margin-bottom: 0.45rem;
+        }
+
+        .mini-title {
+            margin: 0 0 0.45rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .mini-copy {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .cta-panel {
+            border-top: 1px solid rgba(15, 23, 42, 0.08);
+            padding-top: 1.1rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .accent-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.10);
+            color: #dbeafe;
+            font-size: 0.86rem;
+            font-weight: 700;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         footer {
@@ -81,21 +404,36 @@
             color: #cbd5e1;
         }
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
+        @media (max-width: 992px) {
+            .hero-panel,
+            .two-column {
+                grid-template-columns: 1fr;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            .info-layout {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            main.container {
-                padding: 1.2rem;
-                border-radius: 14px;
+            .page-shell {
+                border-radius: 18px;
+                padding: 0.9rem;
+                gap: 1.25rem;
+            }
+
+            .hero-panel {
+                gap: 1rem;
+            }
+
+            .section-head {
+                align-items: start;
+                flex-direction: column;
+            }
+
+            .cta-actions .btn,
+            .action-row .btn {
+                flex: 1 1 160px;
             }
 
             .navbar-brand {
@@ -105,12 +443,9 @@
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <i class="bi bi-graph-up-arrow me-1"></i> Loan Prediction System
-            </a>
+            <a class="navbar-brand" href="{% url 'home' %}">Loan Prediction System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -119,46 +454,42 @@
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'predict' %}">
-                                <i class="bi bi-cpu"></i> Predict Loan
-                            </a>
+                            <a class="nav-link" href="{% url 'predict' %}">Predict Loan</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person-circle"></i> My Account
+                                My Account
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end shadow">
-                                <li><a class="dropdown-item" href="{% url 'user_profile' %}"><i class="bi bi-person-lines-fill me-2"></i>Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'change_password' %}"><i class="bi bi-key-fill me-2"></i>Change Password</a></li>
-                                <li><a class="dropdown-item" href="{% url 'prediction_history' %}"><i class="bi bi-clock-history me-2"></i>Prediction History</a></li>
-                                <li><a class="dropdown-item" href="{% url 'loan_history' %}"><i class="bi bi-card-list me-2"></i>Loan History</a></li>
+                                <li><a class="dropdown-item" href="{% url 'user_profile' %}">Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a></li>
+                                <li><a class="dropdown-item" href="{% url 'prediction_history' %}">Prediction History</a></li>
+                                <li><a class="dropdown-item" href="{% url 'loan_history' %}">Loan History</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                                <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><span class="nav-link">Welcome, {{ user.username }}</span></li>
                     {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}"><i class="bi bi-person-plus"></i> Register</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'admin_login' %}"><i class="bi bi-shield-lock"></i> Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'admin_login' %}">Admin</a></li>
                     {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Page Content -->
-    <main class="container my-4 flex-grow-1">
+    <main class="container flex-grow-1">
         {% block content %}
         {% endblock %}
     </main>
 
-    <!-- Footer -->
     <footer class="text-white text-center py-3 mt-auto">
         <div class="container">
-            <p>&copy; {{ now|date:"Y" }} Loan Prediction System</p>
-            <small>Built with Django and Machine Learning</small>
+            <p>Loan Prediction System</p>
+            <small>{{ now|date:"Y" }} · Built with Django and Machine Learning</small>
         </div>
     </footer>
 
