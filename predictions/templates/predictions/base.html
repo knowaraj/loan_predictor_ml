@@ -368,6 +368,78 @@
             flex-wrap: wrap;
         }
 
+        /* Result page styles */
+        .result-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.96));
+            border: 1px solid rgba(15,23,42,0.06);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(15,23,42,0.06);
+        }
+
+        .prob-meter {
+            width: 120px;
+            height: 120px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: conic-gradient(var(--brand) calc(var(--p, 0) * 1%), rgba(15,23,42,0.06) 0);
+            position: relative;
+            box-shadow: inset 0 6px 18px rgba(15,23,42,0.04);
+        }
+
+        .prob-meter::after {
+            content: '';
+            width: 72px;
+            height: 72px;
+            border-radius: 999px;
+            background: #fff;
+            display: block;
+            box-shadow: 0 8px 18px rgba(15,23,42,0.06);
+        }
+
+        .prob-value {
+            position: absolute;
+            font-weight: 800;
+            color: var(--brand-dark);
+            z-index: 2;
+            font-size: 1.25rem;
+        }
+
+        /* hide label when empty so inner circle appears clean */
+        .prob-value:empty {
+            display: none;
+        }
+
+        .status-pill {
+            padding: 0.35rem 0.65rem;
+            border-radius: 999px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            font-size: 0.95rem;
+        }
+
+        .status-high { background: linear-gradient(90deg,#f97316,#ef4444); color: #fff; }
+        .status-safe { background: linear-gradient(90deg,#10b981,#059669); color: #fff; }
+
+        .reason-badge {
+            background: rgba(15,23,42,0.04);
+            border: 1px solid rgba(15,23,42,0.04);
+            padding: 0.35rem 0.6rem;
+            border-radius: 999px;
+            font-weight: 700;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .advice-panel h5 { margin-bottom: 0.6rem; }
+
+        .advice-list { margin: 0; padding-left: 1.15rem; color: var(--muted); }
+
+        @media (max-width: 768px) {
+            .prob-meter { width: 96px; height: 96px; }
+            .prob-meter::after { width: 56px; height: 56px; }
+        }
+
         .accent-pill {
             display: inline-flex;
             align-items: center;
