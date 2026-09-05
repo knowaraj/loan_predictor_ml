@@ -1,0 +1,137 @@
+:root {
+  --ink: #0f172a;
+  --muted: #64748b;
+  --brand: #0f766e;
+  --brand-dark: #115e59;
+  --accent: #d97706;
+  --surface: #ffffff;
+  --border: rgba(15, 23, 42, 0.10);
+  --shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+}
+
+.loan-form-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.loan-form-container {
+  max-width: 680px;
+  width: 100%;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  animation: fade-up 220ms ease-out;
+}
+
+.loan-form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.loan-form-header h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.loan-form-subtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.loan-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.loan-form-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 640px) {
+  .loan-form-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loan-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.loan-form-field label {
+  display: block;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.loan-form-field input,
+.loan-form-field select {
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--ink);
+  transition: all 0.2s ease;
+}
+
+.loan-form-field input:focus,
+.loan-form-field select:focus {
+  border-color: var(--brand);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+  outline: none;
+}
+
+.loan-form-field input::placeholder {
+  color: var(--muted);
+}
+
+.loan-form-submit {
+  width: 100%;
+  padding: 0.9rem 1.25rem;
+  background: linear-gradient(120deg, var(--brand) 0%, var(--brand-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 20px rgba(15, 118, 110, 0.2);
+  font-family: inherit;
+}
+
+.loan-form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(15, 118, 110, 0.28);
+  background: linear-gradient(120deg, var(--brand-dark) 0%, #0a4f4a 100%);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

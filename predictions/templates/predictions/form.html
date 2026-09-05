@@ -1,39 +1,32 @@
 {% extends 'predictions/base.html' %}
-{% load widget_tweaks %}
+{% load static %}
 
 {% block content %}
-<div class="row justify-content-center">
+<link rel="stylesheet" href="{% static 'predictions/react/loan-form.css' %}">
+
+<div
+    id="react-loan-form"
+    data-csrf="{{ csrf_token }}"
+    data-action="{% url 'predict' %}">
+</div>
+
+{% if form.errors %}
+<div class="row justify-content-center mt-3">
     <div class="col-md-10">
-        <div class="card border-0 shadow-lg p-4 rounded-4">
-            <h2 class="mb-2 text-center text-success fw-bold">Loan Prediction Form</h2>
-            <p class="text-center text-muted mb-4">Fill in your details to estimate loan default risk.</p>
-
-            <form method="post" class="row g-3">
-                {% csrf_token %}
-
-                {% for field in form %}
-                <div class="col-md-6">
-                    <label class="form-label fw-semibold">{{ field.label }}</label>
-                    {{ field }}
-
-                    {% if field.help_text %}
-                        <small class="form-text text-muted">{{ field.help_text }}</small>
-                    {% endif %}
-
-                    {% for error in field.errors %}
-                        <div class="text-danger">{{ error }}</div>
+        <div class="alert alert-danger">
+            <strong>Please fix the following errors:</strong>
+            <ul class="mb-0 mt-2">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ field|title }}: {{ error }}</li>
                     {% endfor %}
-                </div>
                 {% endfor %}
-
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-success btn-lg px-5 rounded-pill">
-                        <i class="bi bi-cpu me-2"></i>Predict Default
-                    </button>
-                </div>
-            </form>
+            </ul>
         </div>
     </div>
 </div>
+{% endif %}
+
+<script type="module" src="{% static 'predictions/react/loan-form.js' %}"></script>
 <br>
 {% endblock %}

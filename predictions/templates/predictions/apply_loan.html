@@ -8,19 +8,30 @@
     {% elif success %}
         <div class="alert alert-success">Loan application submitted successfully for Rs{{ loan_amount }}!</div>
     {% else %}
+        <!-- Display Original Loan Amount from Prediction -->
+        <div class="alert alert-info mb-4">
+            <strong>Loan Amount from Prediction Form:</strong> Rs{{ original_loan_amount }}
+        </div>
+
         <form method="post">
             {% csrf_token %}
             <div class="mb-3">
-                <label class="form-label">Loan Amount</label>
-                <input type="number" name="loan_amount" class="form-control" required>
+                <label class="form-label">Loan Amount (from prediction form)</label>
+                <!-- Pre-filled with loan amount from prediction, read-only -->
+                <input type="number" 
+                       name="loan_amount" 
+                       class="form-control" 
+                       value="{{ original_loan_amount }}" 
+                       readonly>
+                <small class="form-text text-muted">This amount is from your prediction form and cannot be changed here.</small>
             </div>
             <div class="mb-3">
                 <label class="form-label">Tenure (Months)</label>
-                <input type="number" name="loan_tenure" class="form-control" required>
+                <input type="number" name="loan_tenure" class="form-control" placeholder="e.g., 360" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Purpose</label>
-                <textarea name="loan_purpose" class="form-control" rows="3" required></textarea>
+                <textarea name="loan_purpose" class="form-control" rows="3" placeholder="Enter the purpose of the loan" required></textarea>
             </div>
             <button type="submit" class="btn btn-success">Submit Application</button>
         </form>

@@ -1,9 +1,7 @@
 from django import forms
 from .models import LoanApplication,UserProfile
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, AuthenticationForm
 
 
 GENDER_CHOICES = [
@@ -65,7 +63,7 @@ class UserRegisterForm(UserCreationForm):
     last_name = forms.CharField(max_length=50)
     email = forms.EmailField()
     mobile_number = forms.CharField(max_length=15)
-    address = forms.CharField(widget=forms.Textarea)
+    address = forms.CharField(widget=forms.TextInput)
 
     class Meta:
         model = User
@@ -80,6 +78,41 @@ class UserProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['mobile_number', 'address']
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        max_length=150,
+        min_length=3,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'autocomplete': 'username',
+            'placeholder': 'Enter username',
+        })
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'autocomplete': 'current-password',
+            'placeholder': 'Enter password',
+        })
+    )
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username', '').strip()
+        if not username:
+            raise forms.ValidationError('Username is required.')
+        return username
+
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get('username')
+        password = cleaned_data.get('password')
+
+        if username and password and not self.get_user():
+            raise forms.ValidationError('Invalid username or password.')
+
+        return cleaned_data
 
 # Change Password Form (already provided by Django, we just use it)
 class CustomPasswordChangeForm(PasswordChangeForm):
